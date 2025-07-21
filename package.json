@@ -1,0 +1,31 @@
+{
+  "name": "centrepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types",
+    "db:generate": "turbo db:generate",
+    "db:migrate": "turbo db:migrate",
+    "db:studio": "turbo db:studio",
+    "db:setup-user": "turbo db:setup-user"
+  },
+  "devDependencies": {
+    "@tsconfig/next": "^2.0.3",
+    "@tsconfig/node-lts": "^22.0.2",
+    "@tsconfig/recommended": "^1.0.10",
+    "prettier": "^3.6.0",
+    "turbo": "^2.5.4",
+    "typescript": "5.8.2"
+  },
+  "packageManager": "pnpm@10.12.4",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.2",
+    "zod": "^3.25.74"
+  }
+}
