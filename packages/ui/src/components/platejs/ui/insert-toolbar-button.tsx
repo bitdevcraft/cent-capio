@@ -25,6 +25,7 @@ import {
   SquareIcon,
   TableIcon,
   TableOfContentsIcon,
+  Type,
 } from "lucide-react";
 import { KEYS } from "platejs";
 import { type PlateEditor, useEditorRef } from "platejs/react";
@@ -57,7 +58,7 @@ const groups: Group[] = [
     group: "Basic blocks",
     items: [
       {
-        icon: <PilcrowIcon />,
+        icon: <Type />,
         label: "Paragraph",
         value: KEYS.p,
       },

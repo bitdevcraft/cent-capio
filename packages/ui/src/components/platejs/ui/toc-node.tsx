@@ -39,7 +39,7 @@ export function TocElement(props: PlateElementProps) {
               className={headingItemVariants({
                 depth: item.depth as 1 | 2 | 3,
               })}
-              onClick={(e) => btnProps.onClick(e, item, 'smooth')}
+              onClick={(e) => btnProps.onClick(e, item, "smooth")}
               aria-current
             >
               {item.title}

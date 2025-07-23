@@ -13,6 +13,7 @@ export function PlateEditor() {
     plugins: EditorKit,
     value,
   });
+  
 
   console.log(editor.children);
 

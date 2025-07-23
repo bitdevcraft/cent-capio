@@ -37,6 +37,7 @@ import { SuggestionKit } from "./suggestion-kit";
 import { TableKit } from "./table-kit";
 import { TocKit } from "./toc-kit";
 import { ToggleKit } from "./toggle-kit";
+import { FixedMenubarKit } from "./fixed-menubar-kit";
 
 export const EditorKit = [
   ...CopilotKit,
@@ -86,7 +87,8 @@ export const EditorKit = [
 
   // UI
   ...BlockPlaceholderKit,
-  ...FixedToolbarKit,
+  ...FixedMenubarKit,
+  // ...FixedToolbarKit,
   ...FloatingToolbarKit,
 ];
 

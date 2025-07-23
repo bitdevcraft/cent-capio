@@ -19,6 +19,7 @@ import {
   PilcrowIcon,
   QuoteIcon,
   SquareIcon,
+  Type,
 } from "lucide-react";
 import { KEYS } from "platejs";
 import { useEditorRef, useSelectionFragmentProp } from "platejs/react";
@@ -35,9 +36,9 @@ import { getBlockType, setBlockType } from "../editor/transforms";
 
 export const turnIntoItems = [
   {
-    icon: <PilcrowIcon />,
+    icon: <Type />,
     keywords: ["paragraph"],
-    label: "Text",
+    label: "Normal Text",
     value: KEYS.p,
   },
   {

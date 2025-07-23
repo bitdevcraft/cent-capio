@@ -478,7 +478,7 @@ export const AIMenuItems = ({
           {group.items.map((menuItem) => (
             <CommandItem
               key={menuItem.value}
-              className="[&_svg]:text-muted-foreground"
+              className="[&_svg]:text-muted-foreground flex gap-2 p-2"
               value={menuItem.value}
               onSelect={() => {
                 menuItem.onSelect?.({

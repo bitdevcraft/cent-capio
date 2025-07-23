@@ -26,7 +26,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale} className="h-full w-full" suppressHydrationWarning>
-      <body className={cn(fontMono.className, "h-full min-h-screen")}>
+      <body className={cn(fontSans.className, "h-full min-h-screen")}>
         <NextIntlClientProvider messages={messages}>
           <div className="h-full min-h-0 w-full">
             <Providers>{children}</Providers>
