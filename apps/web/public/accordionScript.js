@@ -1,30 +1,47 @@
 window.addEventListener("DOMContentLoaded", () => {
-  // 1. Find all toggle headers
-  const toggles = document.querySelectorAll('[data-slate-type="toggle"]');
+  document.querySelectorAll('[data-slate-type="toggle"]').forEach((toggle) => {
+    const headerDepth = toggle.hasAttribute("data-slate-indent")
+      ? +toggle.getAttribute("data-slate-indent")
+      : 0;
 
-  toggles.forEach((toggle) => {
-    // 2. Hide all following indent blocks initially
-    let nxt = toggle.nextElementSibling;
-    while (nxt && nxt.hasAttribute("data-slate-indent")) {
-      nxt.style.display = "none";
-      nxt = nxt.nextElementSibling;
+    // ensure everything starts closed
+    let n = toggle.nextElementSibling;
+    while (n && n.hasAttribute("data-slate-indent")) {
+      n.classList.remove("open");
+      n = n.nextElementSibling;
     }
 
-    // 3. Make header clickable
     toggle.style.cursor = "pointer";
     toggle.addEventListener("click", () => {
-      // Determine new state: if first indent is hidden → we’re opening
-      const firstIndent = toggle.nextElementSibling;
-      const opening = firstIndent && firstIndent.style.display === "none";
+      const first = toggle.nextElementSibling;
+      if (!first || !first.hasAttribute("data-slate-indent")) return;
 
-      // 4. Toggle each indent sibling
-      let curr = firstIndent;
+      const opening = !first.classList.contains("open");
+      let curr = first;
+
       while (curr && curr.hasAttribute("data-slate-indent")) {
-        curr.style.display = opening ? "" : "none";
+        const depth = +curr.getAttribute("data-slate-indent");
+        if (depth <= headerDepth) break;
+
+        if (opening) {
+          // only open direct children
+          if (depth === headerDepth + 1) {
+            curr.classList.add("open");
+          }
+        } else {
+          // close everything deeper
+          curr.classList.remove("open");
+
+          // reset any nested chevron icons
+          if (curr.dataset.slateType === "toggle") {
+            const ic = curr.querySelector("svg");
+            if (ic) ic.classList.replace("rotate-90", "rotate-0");
+          }
+        }
         curr = curr.nextElementSibling;
       }
 
-      // 5. Rotate the chevron
+      // rotate this toggle’s chevron
       const icon = toggle.querySelector("svg");
       if (icon) {
         icon.classList.toggle("rotate-0");
