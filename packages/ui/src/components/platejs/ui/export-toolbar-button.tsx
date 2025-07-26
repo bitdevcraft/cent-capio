@@ -20,6 +20,7 @@ import {
 import { EditorStatic } from "./editor-static";
 import { ToolbarButton } from "./toolbar";
 import { BaseEditorKit } from "../plugins/editor-base-kit";
+import { createHtmlDocument } from "@repo/ui/lib/create-html-document";
 
 const siteUrl = "https://platejs.org";
 
@@ -107,33 +108,9 @@ export function ExportToolbarButton(props: DropdownMenuProps) {
     });
 
     const tailwindCss = `<link rel="stylesheet" href="${siteUrl}/tailwind.css">`;
-    const katexCss = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.css" integrity="sha384-9PvLvaiSKCPkFKB1ZsEoTjgnJn+O3KvEwtsz37/XrkYft3DTk2gHdYvd9oWgW3tV" crossorigin="anonymous">`;
+    const katexCDN = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.css" integrity="sha384-9PvLvaiSKCPkFKB1ZsEoTjgnJn+O3KvEwtsz37/XrkYft3DTk2gHdYvd9oWgW3tV" crossorigin="anonymous">`;
 
-    const html = `<!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="color-scheme" content="light dark" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap"
-          rel="stylesheet"
-        />
-        ${tailwindCss}
-        ${katexCss}
-        <style>
-          :root {
-            --font-sans: 'Inter', 'Inter Fallback';
-            --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback';
-          }
-        </style>
-      </head>
-      <body>
-        ${editorHtml}
-      </body>
-    </html>`;
+    const html = createHtmlDocument({ editorHtml, tailwindCss, katexCDN });
 
     const url = `data:text/html;charset=utf-8,${encodeURIComponent(html)}`;
 

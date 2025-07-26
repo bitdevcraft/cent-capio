@@ -41,6 +41,7 @@ const useSignupWithPassword = () => {
       if (error) throw new Error(error.message);
 
       const userData = data.user as typeof data.user;
+
       return {
         email_address: userData.email,
         id: userData.id,
@@ -83,7 +84,7 @@ export const SignupForm = () => {
   const onSubmit: SubmitHandler<SignUpWithPasswordPayload> = (data) => {
     signup.mutate(data, {
       onSuccess: () => {
-        router.push("/");
+        router.push("/auth/sign-in");
       },
     });
   };

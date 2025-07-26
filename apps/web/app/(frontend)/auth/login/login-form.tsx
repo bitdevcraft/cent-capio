@@ -27,7 +27,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 export const useLoginWithEmailAndPassword = () => {
@@ -58,6 +58,10 @@ export const LoginForm = () => {
   const router = useRouter();
   const t = useTranslations("auth");
 
+  const searchParams = useSearchParams();
+
+  const path = searchParams.get("path");
+
   const form = useForm<LoginWithEmailPasswordPayload>({
     resolver: zodResolver(LoginWithEmailPasswordSchema),
     defaultValues: { email: "", password: "" },
@@ -68,7 +72,7 @@ export const LoginForm = () => {
   const onSubmit: SubmitHandler<LoginWithEmailPasswordPayload> = (data) => {
     login.mutate(data, {
       onSuccess: () => {
-        router.push("/");
+        router.push(`${path ?? "/"}`);
       },
     });
   };

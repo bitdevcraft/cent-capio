@@ -1,34 +1,37 @@
-"use client";
 
-import * as React from "react";
-
-import { Plate, usePlateEditor } from "platejs/react";
-
-import { EditorKit } from "../plugins/editor-kit";
-import { SettingsDialog } from "./settings-dialog";
-import { Editor, EditorContainer } from "../ui/editor";
-
-export function PlateEditor() {
-  const editor = usePlateEditor({
-    plugins: EditorKit,
-    value,
-  });
-
-  return (
-    <Plate editor={editor}>
-      <EditorContainer>
-        <Editor variant="demo" />
-      </EditorContainer>
-
-      <SettingsDialog />
-    </Plate>
-  );
-}
-
-const value = [
+export const demovalue = [
   {
     children: [{ text: "Welcome to the Plate Playground!" }],
     type: "h1",
+  },
+  {
+    children: [{ text: "Welcome to the Plate Playground!" }],
+    type: "toggle",
+  },
+  {
+    children: [{ text: "hi!" }],
+    type: "p",
+    indent: 1,
+  },
+  {
+    children: [{ text: "hi!" }],
+    type: "toggle",
+    indent: 1,
+  },
+  {
+    children: [{ text: "hi!" }],
+    type: "p",
+    indent: 2,
+  },
+  {
+    children: [{ text: "hi!" }],
+    type: "toggle",
+    indent: 2,
+  },
+  {
+    children: [{ text: "hi!" }],
+    type: "p",
+    indent: 3,
   },
   {
     children: [

@@ -35,7 +35,7 @@ export const useForgotPasswordMutation = () => {
     mutationFn: async (
       payload: ForgotPasswordPayload
     ): Promise<ForgotPasswordResponse> => {
-      return await axios.post("/auth/forgot-password", {
+      return await axios.post("/api/auth/forgot-password", {
         body: payload,
       });
     },

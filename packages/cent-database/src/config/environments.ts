@@ -13,28 +13,28 @@ const configurations: Record<Environment, EnvironmentConfig> = {
     database: {
       idleTimeout: 30,
       maxConnections: 10,
-      ssl: false,
+      ssl: true,
     },
   },
   production: {
     database: {
       idleTimeout: 120,
       maxConnections: 50,
-      ssl: false,
+      ssl: true,
     },
   },
   staging: {
     database: {
       idleTimeout: 60,
       maxConnections: 20,
-      ssl: false,
+      ssl: true,
     },
   },
   test: {
     database: {
       idleTimeout: 10,
       maxConnections: 5,
-      ssl: false,
+      ssl: true,
     },
   },
 };

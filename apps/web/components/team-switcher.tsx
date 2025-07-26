@@ -18,6 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@repo/ui/components/shadcn/sidebar";
+import { authClient } from "@/lib/auth/auth-client";
 
 export function TeamSwitcher({
   teams,

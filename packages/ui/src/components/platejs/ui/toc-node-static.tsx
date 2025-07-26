@@ -36,6 +36,7 @@ export function TocElementStatic(props: SlateElementProps) {
               className={headingItemVariants({
                 depth: item.depth as 1 | 2 | 3,
               })}
+              data-scroll-to={item.id}
             >
               {item.title}
             </Button>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import {
   type SlateElementProps,
@@ -6,7 +6,8 @@ import {
   type TCodeBlockElement,
   SlateElement,
   SlateLeaf,
-} from 'platejs';
+} from "platejs";
+import { Copy, CopyIcon } from "lucide-react";
 
 export function CodeBlockElementStatic(
   props: SlateElementProps<TCodeBlockElement>
@@ -19,6 +20,10 @@ export function CodeBlockElementStatic(
       <div className="relative rounded-md bg-muted/50">
         <pre className="overflow-x-auto p-8 pr-4 font-mono text-sm leading-[normal] [tab-size:2] print:break-inside-avoid">
           <code>{props.children}</code>
+          <button className="absolute top-1 right-1 size-6 gap-1 text-xs text-muted-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50">
+            <span className="sr-only">Copy</span>
+            <CopyIcon className="!size-3" />
+          </button>
         </pre>
       </div>
     </SlateElement>

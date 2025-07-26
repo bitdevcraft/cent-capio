@@ -87,11 +87,7 @@ export default function BlogEditorForm() {
                   <FormItem>
                     <FormLabel>Title</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="title"
-                        {...field}
-                        className="shadow-none border-muted"
-                      />
+                      <Input placeholder="title" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -104,11 +100,7 @@ export default function BlogEditorForm() {
                   <FormItem>
                     <FormLabel>Slug</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="slug"
-                        {...field}
-                        className="shadow-none border-muted"
-                      />
+                      <Input placeholder="slug" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,11 +115,7 @@ export default function BlogEditorForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        placeholder="name"
-                        {...field}
-                        className="shadow-none border-muted"
-                      />
+                      <Input placeholder="name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -139,11 +127,7 @@ export default function BlogEditorForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Textarea
-                        placeholder="description"
-                        {...field}
-                        className="shadow-none border-muted"
-                      />
+                      <Textarea placeholder="description" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

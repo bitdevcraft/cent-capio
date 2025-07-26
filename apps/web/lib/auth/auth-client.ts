@@ -1,8 +1,6 @@
 import { organizationClient } from "better-auth/client/plugins";
-import { createAuthClient } from "better-auth/react";
+import { createAuthClient } from "better-auth/client";
 
-export const authClient: ReturnType<typeof createAuthClient> = createAuthClient(
-  {
-    plugins: [organizationClient()],
-  },
-);
+export const authClient = createAuthClient({
+  plugins: [organizationClient()],
+});

@@ -3,10 +3,9 @@
 import * as React from "react";
 
 import { Plate, usePlateEditor } from "platejs/react";
-
-import { EditorKit } from "../plugins/editor-kit";
-import { SettingsDialog } from "./settings-dialog";
-import { Editor, EditorContainer } from "../ui/editor";
+import { SettingsDialog } from "@repo/ui/components/platejs/editor/settings-dialog";
+import { EditorKit } from "@repo/ui/components/platejs/plugins/editor-kit";
+import { EditorContainer, Editor } from "@repo/ui/components/platejs/ui/editor";
 
 export function PlateEditor() {
   const editor = usePlateEditor({

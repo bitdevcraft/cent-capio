@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 import { baseModel } from "../abstract/baseModel";
 import { usersTable } from "./users";
@@ -14,7 +14,7 @@ export const userAccountsTable = pgTable("user_accounts", {
   refreshToken: text("refresh_token"),
   refreshTokenExpiresAt: timestamp("refresh_token_expires_at"),
   scope: text("scope"),
-  userId: text("user_id")
+  userId: uuid("user_id")
     .references(() => usersTable.id)
     .notNull(),
 });

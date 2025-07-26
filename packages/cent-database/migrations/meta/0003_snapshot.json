@@ -1,6 +1,6 @@
 {
-  "id": "e033b2be-2325-4801-b49f-4f8e36ada67a",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "cf76fab4-44a2-47d8-8f28-a2f9db0dcf73",
+  "prevId": "281cf37c-d2e1-4d77-b470-6f72cf9f2429",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -505,6 +505,12 @@
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -708,6 +714,12 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "json_content": {
+          "name": "json_content",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
         },
         "meta": {
           "name": "meta",

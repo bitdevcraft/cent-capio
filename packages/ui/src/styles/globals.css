@@ -133,3 +133,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  [data-slate-indent] {
+    @apply max-h-0 opacity-0 overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out;
+  }
+  [data-slate-indent].open {
+    @apply max-h-[500px] opacity-100;
+  }
+}

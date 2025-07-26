@@ -6,6 +6,7 @@ import { baseModelWithOwner } from "../abstract/baseModelWithOwner";
 export const blogsTable = pgTable("blogs", {
   ...baseModelWithOwner,
   content: text("content").notNull(),
+  jsonContent: jsonb("json_content"),
   meta: jsonb("meta").$type<Record<string, unknown>>().default({}),
   slug: text("slug").notNull().unique(),
   title: text("title").notNull(),

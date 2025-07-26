@@ -9,7 +9,7 @@ export function createOrganizationPolicies<
   },
 >(tableName: string, t: T) {
   const ROLE = process.env.POSTGRES_USER_ROLE!;
-  const sessionCheck = sql`${t.organizationId} = current_setting('app.current_organization')`;
+  const sessionCheck = sql`${t.organizationId} = current_setting('app.current_organization')::uuid`;
 
   return [
     pgPolicy(`${tableName}_select_organization`, {

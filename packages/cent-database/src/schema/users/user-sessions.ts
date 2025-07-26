@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 
 import { baseModel } from "../abstract/baseModel";
 import { usersTable } from "./users";
@@ -6,8 +6,8 @@ import { organizationsTable } from "../organizations";
 
 export const userSessionsTable = pgTable("user_sessions", {
   ...baseModel,
-  activeOrganizationId: text("active_organization_id").references(
-    () => organizationsTable.id,
+  activeOrganizationId: uuid("active_organization_id").references(
+    () => organizationsTable.id
   ),
   expiresAt: timestamp("expires_at", {
     mode: "date",
@@ -16,7 +16,7 @@ export const userSessionsTable = pgTable("user_sessions", {
   ipAddress: varchar("ip_address", { length: 100 }),
   token: text("token"),
   userAgent: varchar("user_agent", { length: 255 }),
-  userId: text("user_id")
+  userId: uuid("user_id")
     .references(() => usersTable.id)
     .notNull(),
 });
