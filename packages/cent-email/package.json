@@ -1,8 +1,7 @@
 {
-  "name": "@repo/cent-shared",
+  "name": "@repo/cent-email",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -10,24 +9,22 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@repo/cent-shared": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.0.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "tsup": "^8.5.0"
   },
   "dependencies": {
-    "zod": "^3.25.67"
+    "react": "^19.0.0",
+    "resend": "^4.7.0"
   },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
-    },
-    "./constants": {
-      "types": "./dist/constants.d.ts",
-      "import": "./dist/constants.js",
-      "default": "./dist/constants.js"
     },
     "./package.json": "./package.json"
   }

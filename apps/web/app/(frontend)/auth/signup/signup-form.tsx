@@ -28,6 +28,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { Loader } from "lucide-react";
 
 const useSignupWithPassword = () => {
   return useMutation({
@@ -84,7 +85,7 @@ export const SignupForm = () => {
   const onSubmit: SubmitHandler<SignUpWithPasswordPayload> = (data) => {
     signup.mutate(data, {
       onSuccess: () => {
-        router.push("/auth/sign-in");
+        router.push("/auth/login");
       },
     });
   };
@@ -147,8 +148,18 @@ export const SignupForm = () => {
               )}
             />
 
-            <Button type="submit" className="w-full">
-              {t("signup_button")}
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={signup.isPending}
+            >
+              {signup.isPending ? (
+                <>
+                  <Loader className="animate-spin" /> Signing Up
+                </>
+              ) : (
+                t("signup_button")
+              )}
             </Button>
             <Button
               type="button"

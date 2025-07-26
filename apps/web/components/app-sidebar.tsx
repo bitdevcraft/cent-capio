@@ -26,6 +26,7 @@ import {
   SidebarRail,
 } from "@repo/ui/components/shadcn/sidebar";
 import { Organization } from "better-auth/plugins/organization";
+import { User } from "@repo/cent-database/schema";
 
 // This is sample data.
 const data = {
@@ -142,9 +143,19 @@ const data = {
 
 export function AppSidebar({
   teams,
+  user,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
   teams: Organization[];
+  user: {
+    id: string;
+    name: string;
+    emailVerified: boolean;
+    email: string;
+    createdAt: Date;
+    updatedAt: Date;
+    image?: string | null | undefined | undefined | undefined;
+  };
 }) {
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -156,7 +167,7 @@ export function AppSidebar({
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

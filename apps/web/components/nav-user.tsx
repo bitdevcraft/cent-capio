@@ -30,16 +30,35 @@ import {
   useSidebar,
 } from "@repo/ui/components/shadcn/sidebar";
 
+import { User } from "@repo/cent-database/schema";
+import { authClient } from "@/lib/auth/auth-client";
+import { useRouter } from "next/navigation";
+
 export function NavUser({
   user,
 }: {
   user: {
+    id: string;
     name: string;
+    emailVerified: boolean;
     email: string;
-    avatar: string;
+    createdAt: Date;
+    updatedAt: Date;
+    image?: string | null | undefined | undefined | undefined;
   };
 }) {
   const { isMobile } = useSidebar();
+  const router = useRouter();
+
+  const onLogout = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/auth/login"); // redirect to login page
+        },
+      },
+    });
+  };
 
   return (
     <SidebarMenu>
@@ -51,7 +70,7 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={user.image ?? ""} alt={user.name ?? ""} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -70,7 +89,7 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage src={user.image ?? ""} alt={user.name ?? ""} />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
@@ -102,7 +121,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={onLogout}>
               <LogOut />
               Log out
             </DropdownMenuItem>

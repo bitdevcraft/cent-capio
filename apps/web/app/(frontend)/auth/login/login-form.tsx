@@ -29,6 +29,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { Loader } from "lucide-react";
 
 export const useLoginWithEmailAndPassword = () => {
   return useMutation({
@@ -72,7 +73,7 @@ export const LoginForm = () => {
   const onSubmit: SubmitHandler<LoginWithEmailPasswordPayload> = (data) => {
     login.mutate(data, {
       onSuccess: () => {
-        router.push(`${path ?? "/"}`);
+        router.push(`${path ?? "/cent-admin"}`);
       },
     });
   };
@@ -122,8 +123,18 @@ export const LoginForm = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full">
-                {t("login_button")}
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={login.isPending}
+              >
+                {login.isPending ? (
+                  <>
+                    <Loader className="animate-spin" /> Logging in
+                  </>
+                ) : (
+                  t("login_button")
+                )}
               </Button>
               <Button type="button" variant="outline" className="w-full">
                 {t("social_login.google")}
