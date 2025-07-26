@@ -49,6 +49,7 @@ export const auth = betterAuth({
       create: {
         before: async (session) => {
           const organization = await getActiveOrganization(session.userId);
+
           return {
             data: {
               ...session,

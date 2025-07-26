@@ -1,10 +1,10 @@
 import { pgTable } from "drizzle-orm/pg-core";
 
-import { baseModel } from "../abstract/baseModel";
+import { baseModelWithWorkspace } from "../abstract/baseModelWithWorkSpace";
 
 export const organizationInvitationsTable = pgTable(
   "organization_invitations",
   {
-    ...baseModel,
-  },
+    ...baseModelWithWorkspace,
+  }
 );

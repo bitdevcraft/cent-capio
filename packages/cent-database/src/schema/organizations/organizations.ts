@@ -9,3 +9,5 @@ export const organizationsTable = pgTable("organizations", {
   name: text("name").notNull(),
   slug: text("slug").notNull(),
 });
+
+export type Organization = typeof organizationsTable.$inferSelect;
