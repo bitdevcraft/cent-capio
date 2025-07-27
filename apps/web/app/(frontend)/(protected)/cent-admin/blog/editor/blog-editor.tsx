@@ -6,23 +6,56 @@ import { Plate, usePlateEditor } from "platejs/react";
 import { SettingsDialog } from "@repo/ui/components/platejs/editor/settings-dialog";
 import { EditorKit } from "@repo/ui/components/platejs/plugins/editor-kit";
 import { EditorContainer, Editor } from "@repo/ui/components/platejs/ui/editor";
+import { BaseEditorKit } from "@repo/ui/components/platejs/plugins/editor-base-kit";
+import { EditorStatic } from "@repo/ui/components/platejs/ui/editor-static";
+import { createHtmlDocument } from "@repo/ui/lib/create-html-document";
+import { createSlateEditor, serializeHtml, Value } from "platejs";
 
-export function BlogEditor() {
-  const editor = usePlateEditor({
-    plugins: EditorKit,
-    value,
-  });
+const siteUrl = "https://platejs.org";
 
-  return (
-    <Plate editor={editor}>
-      <EditorContainer>
-        <Editor variant="default" />
-      </EditorContainer>
-
-      <SettingsDialog />
-    </Plate>
-  );
+export interface BlogEditorHandle {
+  exportValue: () => Promise<Value>;
 }
+
+// 2. Props for the component (none in this case)
+export interface BlogEditorProps {}
+
+const BlogEditor = React.forwardRef<BlogEditorHandle, BlogEditorProps>(
+  (_, ref) => {
+    const editor = usePlateEditor({
+      plugins: EditorKit,
+      value,
+    });
+
+    // Function we’ll expose
+    const exportValue = async (): Promise<Value> => {
+      return editor.children;
+    };
+
+    // 4. Expose exportValue via the ref
+    React.useImperativeHandle(
+      ref,
+      () => ({
+        exportValue,
+      }),
+      [editor.children]
+    );
+
+    return (
+      <Plate editor={editor}>
+        <EditorContainer>
+          <Editor variant="default" />
+        </EditorContainer>
+
+        <SettingsDialog />
+      </Plate>
+    );
+  }
+);
+
+BlogEditor.displayName = "BlogEditor";
+
+export default BlogEditor;
 
 const value = [
   {
