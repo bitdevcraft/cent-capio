@@ -1,7 +1,7 @@
 import { auth } from "@repo/cent-auth";
 import { headers as nextHeaders } from "next/headers";
 import { redirect } from "next/navigation";
-import { CreateOrganizationForm } from "./organization/create/create-organization-form";
+import { CreateOrganizationForm } from "./cent-admin/organization/create/create-organization-form";
 import { OrganizationProvider } from "@/components/organization-provider";
 
 export default async function Layout({

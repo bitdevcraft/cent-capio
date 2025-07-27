@@ -36,11 +36,23 @@ export const useLoginWithEmailAndPassword = () => {
     mutationFn: async (
       payload: LoginWithEmailPasswordPayload
     ): Promise<LoginWithEmailPasswordResponse> => {
-      const { data, error } = await authClient.signIn.email({
-        email: payload.email,
-        password: payload.password,
-        rememberMe: true,
-      });
+      const { data, error } = await authClient.signIn.email(
+        {
+          email: payload.email,
+          password: payload.password,
+          rememberMe: true,
+        },
+        {
+          onError: (ctx) => {
+            // Handle the error
+            if (ctx.error.status === 403) {
+              alert("Please verify your email address");
+            }
+            //you can also show the original error message
+            alert(ctx.error.message);
+          },
+        }
+      );
 
       if (error) throw new Error(error.message);
 

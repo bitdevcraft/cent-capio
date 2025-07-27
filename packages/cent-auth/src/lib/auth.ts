@@ -6,6 +6,12 @@ import { organization } from "better-auth/plugins";
 import { v4 as uuidV4 } from "uuid";
 import { getActiveOrganization } from "./get-active-organization";
 
+import "dotenv/config";
+
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export const auth = betterAuth({
   // Database
   database: drizzleAdapter(db, {
@@ -25,6 +31,7 @@ export const auth = betterAuth({
   // Auth
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
   },
 
   // Plugins
@@ -73,5 +80,16 @@ export const auth = betterAuth({
         },
       },
     },
+  },
+  emailVerification: {
+    sendVerificationEmail: async ({ user, url, token }, request) => {
+      await resend.emails.send({
+        from: "No-Reply <onboarding@centcapio.cc>",
+        to: [user.email],
+        subject: "Verification",
+        text: `Click the link to verify your email: ${url}`,
+      });
+    },
+    sendOnSignUp: true,
   },
 });

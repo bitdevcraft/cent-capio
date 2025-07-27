@@ -19,7 +19,7 @@ import {
 import { TocKit } from "@repo/ui/components/platejs/plugins/toc-kit";
 import { Button } from "@repo/ui/components/shadcn/button";
 import { createHtmlDocument } from "@repo/ui/lib/create-html-document";
-import { demovalue } from "../blog/data";
+import { demovalue } from "../../blog/data";
 
 const siteUrl = "https://platejs.org";
 

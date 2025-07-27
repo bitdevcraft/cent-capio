@@ -10,7 +10,7 @@ export const FixedMenubarKit = [
     key: "fixed-menubar",
     render: {
       beforeEditable: () => (
-        <div className="">
+        <div className="sticky z-50 top-0">
           <FixedMenubar />
           <FixedToolbar>
             <div className="rounded-full w-full border bg-muted px-2 px-1 mb-3">

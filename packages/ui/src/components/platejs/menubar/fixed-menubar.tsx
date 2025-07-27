@@ -36,7 +36,7 @@ import { ListMenubarButton } from "./list-menubar-buttons";
 export function FixedMenubar() {
   return (
     <AlertDialogProvider>
-      <div className="pt-2 text-sm">
+      <div className="text-sm">
         <Menubar className="border-none shadow-none">
           <MenubarMenu>
             <MenubarTrigger>File</MenubarTrigger>
