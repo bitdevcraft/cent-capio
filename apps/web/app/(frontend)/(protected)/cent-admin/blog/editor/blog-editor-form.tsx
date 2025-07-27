@@ -15,37 +15,33 @@ import {
 import { Input } from "@repo/ui/components/shadcn/input";
 import { Textarea } from "@repo/ui/components/shadcn/textarea";
 
-import slugify from "slugify";
-import { nanoid } from "platejs";
 import BlogEditorResizable from "./blog-editor-resizable";
 import { BlogEditorHandle } from "./blog-editor";
 import { Button } from "@repo/ui/components/shadcn/button";
+import {
+  BlogFormValue,
+  BlogFormSchema,
+  BlogFormWithContentSchema,
+} from "@/validations/blog-schema";
+import axios from "axios";
+import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 
-const BlogFormSchema = z.object({
-  title: z.string().min(1, { message: "Title is required" }),
-  slug: z
-    .string()
-    .min(1, { message: "Slug is required" })
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
-      message: "Slug may only contain lowercase letters, numbers, and hyphens",
-    }),
-  meta: z.object({
-    name: z.string(),
-    description: z.string(),
-  }),
-  tags: z.string().array(),
-  status: z.string(),
-  visibility: z.string(),
-});
-
-type BlogFormValue = z.infer<typeof BlogFormSchema>;
+const useCreateBlog = () => {
+  return useMutation({
+    mutationFn: async (payload: z.infer<typeof BlogFormWithContentSchema>) => {
+      const data = await axios.post("/api/blog", payload);
+      return data;
+    },
+  });
+};
 
 export default function BlogEditorForm() {
   const form = useForm<BlogFormValue>({
     resolver: zodResolver(BlogFormSchema),
     defaultValues: {
       title: "",
-      slug: "",
       meta: {
         name: "",
         description: "",
@@ -53,28 +49,24 @@ export default function BlogEditorForm() {
     },
   });
 
-  const randomId = nanoid(12);
-
-  const titleValue = form.watch("title");
-
-  React.useEffect(() => {
-    const newSlug = slugify(titleValue || "", {
-      lower: true,
-      strict: true, // strip special chars
-      remove: /[*+~.()'"!:@]/g,
-    });
-    form.setValue("slug", newSlug, {
-      shouldValidate: !!newSlug,
-    });
-  }, [titleValue, form]);
-
   const editorRef = useRef<BlogEditorHandle>(null);
 
+  const createBlog = useCreateBlog();
   const onSubmit = async (data: BlogFormValue) => {
-    console.log(data);
-    // if (!editorRef.current) return;
-    // const value = await editorRef.current.exportValue();
-    // console.log(value);
+    if (!editorRef.current) return;
+    const content = await editorRef.current.exportValue();
+
+    createBlog.mutate(
+      { content, ...data },
+      {
+        onSuccess: () => {
+          toast.success("Created");
+        },
+        onError: (error) => {
+          toast.error(error.message);
+        },
+      }
+    );
   };
 
   return (
@@ -94,19 +86,6 @@ export default function BlogEditorForm() {
                     <FormLabel>Title</FormLabel>
                     <FormControl>
                       <Input placeholder="title" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="slug"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Slug</FormLabel>
-                    <FormControl>
-                      <Input placeholder="slug" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -140,8 +119,18 @@ export default function BlogEditorForm() {
                 )}
               />
             </div>
-            <Button variant="outline" type="submit">
-              Submit
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={createBlog.isPending}
+            >
+              {createBlog.isPending ? (
+                <>
+                  <Loader className="animate-spin" /> Creating
+                </>
+              ) : (
+                "Create"
+              )}
             </Button>
           </form>
         </Form>

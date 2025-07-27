@@ -1,5 +1,5 @@
 {
-  "id": "e033b2be-2325-4801-b49f-4f8e36ada67a",
+  "id": "af69b33b-2299-4bbc-9cb5-532257104ed3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -453,10 +453,30 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
+        },
+        "organization_id": {
+          "name": "organization_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "organization_invitations_organization_id_organizations_id_fk": {
+          "name": "organization_invitations_organization_id_organizations_id_fk",
+          "tableFrom": "organization_invitations",
+          "tableTo": "organizations",
+          "columnsFrom": [
+            "organization_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
@@ -505,6 +525,12 @@
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -670,13 +696,6 @@
       "name": "blogs",
       "schema": "",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp with time zone",
@@ -709,6 +728,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "json_content": {
+          "name": "json_content",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
         "meta": {
           "name": "meta",
           "type": "jsonb",
@@ -718,8 +743,8 @@
         },
         "slug": {
           "name": "slug",
-          "type": "text",
-          "primaryKey": false,
+          "type": "varchar(1024)",
+          "primaryKey": true,
           "notNull": true
         },
         "title": {

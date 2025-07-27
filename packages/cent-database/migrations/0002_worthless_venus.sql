@@ -1,1 +1,0 @@
-ALTER TABLE "blogs" RENAME COLUMN "jsonContent" TO "json_content";

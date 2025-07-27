@@ -64,7 +64,8 @@ CREATE TABLE "organization_invitations" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"deleted_at" timestamp with time zone,
-	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"organization_id" uuid NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "organization_member" (
@@ -73,7 +74,8 @@ CREATE TABLE "organization_member" (
 	"deleted_at" timestamp with time zone,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"organization_id" uuid NOT NULL,
-	"user_id" uuid NOT NULL
+	"user_id" uuid NOT NULL,
+	"role" varchar(255)
 );
 --> statement-breakpoint
 CREATE TABLE "organizations" (
@@ -96,14 +98,14 @@ CREATE TABLE "blog_comments" (
 );
 --> statement-breakpoint
 CREATE TABLE "blogs" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"deleted_at" timestamp with time zone,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"owner_id" uuid NOT NULL,
 	"content" text NOT NULL,
+	"json_content" jsonb,
 	"meta" jsonb DEFAULT '{}'::jsonb,
-	"slug" text NOT NULL,
+	"slug" varchar(1024) PRIMARY KEY NOT NULL,
 	"title" text NOT NULL,
 	CONSTRAINT "blogs_slug_unique" UNIQUE("slug")
 );
@@ -122,6 +124,7 @@ ALTER TABLE "user_accounts" ADD CONSTRAINT "user_accounts_user_id_users_id_fk" F
 ALTER TABLE "user_activity_logs" ADD CONSTRAINT "user_activity_logs_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "user_sessions" ADD CONSTRAINT "user_sessions_active_organization_id_organizations_id_fk" FOREIGN KEY ("active_organization_id") REFERENCES "public"."organizations"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "user_sessions" ADD CONSTRAINT "user_sessions_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "organization_invitations" ADD CONSTRAINT "organization_invitations_organization_id_organizations_id_fk" FOREIGN KEY ("organization_id") REFERENCES "public"."organizations"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "organization_member" ADD CONSTRAINT "organization_member_organization_id_organizations_id_fk" FOREIGN KEY ("organization_id") REFERENCES "public"."organizations"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "organization_member" ADD CONSTRAINT "organization_member_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "blog_comments" ADD CONSTRAINT "blog_comments_owner_id_users_id_fk" FOREIGN KEY ("owner_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint

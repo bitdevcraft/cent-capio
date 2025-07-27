@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1753511036139,
-      "tag": "0000_pale_the_fallen",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1753520687475,
-      "tag": "0001_productive_paladin",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1753520754873,
-      "tag": "0002_worthless_venus",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1753527030399,
-      "tag": "0003_silly_thunderbolt",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1753547710006,
-      "tag": "0004_long_donald_blake",
+      "when": 1753633973470,
+      "tag": "0000_volatile_mephistopheles",
       "breakpoints": true
     }
   ]

@@ -1,1 +1,0 @@
-ALTER TABLE "organization_member" ADD COLUMN "role" varchar(255);

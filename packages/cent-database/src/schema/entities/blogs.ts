@@ -1,14 +1,17 @@
-import { jsonb, pgTable, text } from "drizzle-orm/pg-core";
+import { jsonb, pgTable, text, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import { baseModelWithOwner } from "../abstract/baseModelWithOwner";
+import { length } from "zod";
+
+const { id, ...base } = baseModelWithOwner;
 
 export const blogsTable = pgTable("blogs", {
-  ...baseModelWithOwner,
+  ...base,
   content: text("content").notNull(),
   jsonContent: jsonb("json_content"),
-  meta: jsonb("meta").$type<Record<string, unknown>>().default({}),
-  slug: text("slug").notNull().unique(),
+  meta: jsonb("meta").$type<Record<string, any>>().default({}),
+  slug: varchar("slug", { length: 1024 }).unique().primaryKey(), // id
   title: text("title").notNull(),
 });
 
