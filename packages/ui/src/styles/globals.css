@@ -142,3 +142,16 @@
     @apply max-h-[500px] opacity-100;
   }
 }
+
+.slate-h1 {
+  font-size: var(--text-3xl);
+  line-height: var(--text-3xl--line-height);
+}
+.slate-h2 {
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+}
+.slate-h3 {
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+}

@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -30,6 +30,7 @@
     "@repo/cent-database": "workspace:*",
     "@repo/cent-shared": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@tabler/icons": "^3.34.1",
     "@tanstack/react-query": "^5.81.5",
     "ai": "^4.3.16",
     "axios": "^1.10.0",

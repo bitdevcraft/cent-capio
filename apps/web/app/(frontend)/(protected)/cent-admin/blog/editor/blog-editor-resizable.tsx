@@ -4,6 +4,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@repo/ui/components/shadcn/resizable";
+import { ScrollArea } from "@repo/ui/components/shadcn/scroll-area";
 import BlogEditor, { BlogEditorHandle, BlogEditorProps } from "./blog-editor";
 
 const BlogEditorResizable = React.forwardRef<BlogEditorHandle, BlogEditorProps>(

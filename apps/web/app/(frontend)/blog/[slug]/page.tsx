@@ -11,19 +11,18 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  const blog = await getBlog(slug);
+  const { data } = await getBlog(slug);
+
   return {
-    title: blog.data?.title ?? "Not found",
-    description: blog.data?.title.slice(0, 150),
+    title: `Blog: ${data?.title ?? "Not found"}`,
+    description: data?.title.slice(0, 150),
   };
 }
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  const { data } = await getBlog(slug);
 
-  if (!data) redirect("/not-found");
+  const promises = Promise.all([getBlog(slug)]);
 
-  const content = data.jsonContent as Value;
-  return <Blog content={content} title={data.title} />;
+  return <Blog promises={promises} />;
 }

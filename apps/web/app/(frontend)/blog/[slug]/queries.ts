@@ -19,7 +19,7 @@ export function getBlog(slug: string) {
         return defaultData;
       }
     },
-    [],
+    [slug],
     { revalidate: 1, tags: [slug] }
   )();
 }

@@ -1,91 +1,169 @@
-import { BaseEditorKit } from "@repo/ui/components/platejs/plugins/editor-base-kit";
-import { getHeadingList } from "@repo/ui/components/platejs/ui/toc-node-static";
-import { Button } from "@repo/ui/components/shadcn/button";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@repo/ui/components/shadcn/breadcrumb";
-import { cn } from "@repo/ui/lib/utils";
-import { cva } from "class-variance-authority";
-import { createStaticEditor, PlateStatic, SlateEditor, Value } from "platejs";
-import { getBlog } from "./queries";
-import React from "react";
-import { redirect } from "next/navigation";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@repo/ui/components/shadcn/avatar";
-import Link from "next/link";
-
-interface Props {
-  promises: Promise<[Awaited<ReturnType<typeof getBlog>>]>;
-}
-
-export function Blog({ promises }: Props) {
-  const [{ data }] = React.use(promises);
-
-  if (!data) redirect("/not-found");
-
-  const editor = createStaticEditor({
-    plugins: BaseEditorKit,
-    value: data?.jsonContent as Value,
-    options: {},
-  });
-
+export function BlogPost01() {
   return (
     <>
-      <script src="/accordionScript.js" />
-      <script src="/buttonScrollToScript.js" />
-      <script src="/codeBlockScript.js" />
-      <section className="py-32 px-4">
-        <div className="max-w-7xl mx-auto">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Blog</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+      <section className="py-32">
+        <div className="container">
+          <nav aria-label="breadcrumb" data-slot="breadcrumb">
+            <ol
+              data-slot="breadcrumb-list"
+              className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"
+            >
+              <li
+                data-slot="breadcrumb-item"
+                className="inline-flex items-center gap-1.5"
+              >
+                <a
+                  data-slot="breadcrumb-link"
+                  className="hover:text-foreground transition-colors"
+                  href="/"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="lucide lucide-house h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                    <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li
+                data-slot="breadcrumb-separator"
+                role="presentation"
+                aria-hidden="true"
+                className="[&amp;&gt;svg]:size-3.5"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-chevron-right"
+                  aria-hidden="true"
+                >
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </li>
+              <li
+                data-slot="breadcrumb-item"
+                className="inline-flex items-center gap-1.5"
+              >
+                <a
+                  data-slot="breadcrumb-link"
+                  className="hover:text-foreground transition-colors"
+                  href="/"
+                >
+                  Components
+                </a>
+              </li>
+              <li
+                data-slot="breadcrumb-separator"
+                role="presentation"
+                aria-hidden="true"
+                className="[&amp;&gt;svg]:size-3.5"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-chevron-right"
+                  aria-hidden="true"
+                >
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </li>
+              <li
+                data-slot="breadcrumb-item"
+                className="inline-flex items-center gap-1.5"
+              >
+                <span
+                  data-slot="breadcrumb-page"
+                  role="link"
+                  aria-disabled="true"
+                  aria-current="page"
+                  className="text-foreground font-normal"
+                >
+                  Blog
+                </span>
+              </li>
+            </ol>
+          </nav>
           <h1 className="mb-7 mt-9 max-w-3xl text-4xl font-bold md:mb-10 md:text-7xl">
-            {data.title}
+            The royal decree that made everyone laugh
           </h1>
           <div className="flex items-center gap-3 text-sm md:text-base">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            <span
+              data-slot="avatar"
+              className="relative flex size-8 shrink-0 overflow-hidden rounded-full h-8 w-8 border"
+            >
+              <img
+                data-slot="avatar-image"
+                className="aspect-square size-full"
+                src="/images/block/avatar-1.webp"
+              />
+            </span>
             <span>
-              <Link href="#" className="font-medium">
+              <a href="#" className="font-medium">
                 John Doe
-              </Link>
+              </a>
               <span className="text-muted-foreground ml-1">
-                on&nbsp;
-                {new Date(data.createdAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
+                on September 23, 2024
               </span>
             </span>
           </div>
           <div className="relative mt-12 grid max-w-7xl gap-14 lg:mt-14 lg:grid lg:grid-cols-12 lg:gap-6">
             <div className="order-2 lg:order-none lg:col-span-8">
-              <PlateStatic editor={editor} />
+                Content
             </div>
             <div className="order-1 flex h-fit flex-col text-sm lg:sticky lg:top-8 lg:order-none lg:col-span-3 lg:col-start-10 lg:text-xs">
               <div className="order-3 lg:order-none">
                 <span className="text-xs font-medium">ON THIS PAGE</span>
                 <nav className="mt-2 lg:mt-4">
-                  <Toc editor={editor} />
+                  <ul className="space-y-1">
+                    <li>
+                      <a
+                        href="#section1"
+                        className="block py-1 transition-colors duration-200 text-muted-foreground lg:text-primary"
+                      >
+                        How Taxes Work and Why They Matter
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#section2"
+                        className="block py-1 transition-colors duration-200 text-muted-foreground hover:text-primary"
+                      >
+                        The Great People's Rebellion
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#section3"
+                        className="block py-1 transition-colors duration-200 text-muted-foreground hover:text-primary"
+                      >
+                        The King's Plan
+                      </a>
+                    </li>
+                  </ul>
                 </nav>
               </div>
               <div
@@ -182,45 +260,3 @@ export function Blog({ promises }: Props) {
     </>
   );
 }
-
-function Toc({ editor }: { editor: SlateEditor }) {
-  const headingList = getHeadingList(editor);
-
-  return (
-    <ul className="space-y-1">
-      {headingList.length > 0 ? (
-        headingList.map((item) => (
-          <li>
-            <button
-              key={item.title}
-              className={cn(
-                "block py-1 transition-colors duration-200 text-muted-foreground hover:text-primary",
-                headingItemVariants({
-                  depth: item.depth as 1 | 2 | 3,
-                })
-              )}
-              data-scroll-to={item.id}
-            >
-              {item.title}
-            </button>
-          </li>
-        ))
-      ) : (
-        <li></li>
-      )}
-    </ul>
-  );
-}
-
-const headingItemVariants = cva(
-  "block py-1 transition-colors duration-200 text-muted-foreground hover:text-primary",
-  {
-    variants: {
-      depth: {
-        1: "pl-0.5",
-        2: "pl-[20px]",
-        3: "pl-[40px]",
-      },
-    },
-  }
-);
