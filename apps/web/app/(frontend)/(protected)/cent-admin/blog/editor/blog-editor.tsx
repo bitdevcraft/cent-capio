@@ -6,10 +6,7 @@ import { Plate, usePlateEditor } from "platejs/react";
 import { SettingsDialog } from "@repo/ui/components/platejs/editor/settings-dialog";
 import { EditorKit } from "@repo/ui/components/platejs/plugins/editor-kit";
 import { EditorContainer, Editor } from "@repo/ui/components/platejs/ui/editor";
-import { BaseEditorKit } from "@repo/ui/components/platejs/plugins/editor-base-kit";
-import { EditorStatic } from "@repo/ui/components/platejs/ui/editor-static";
-import { createHtmlDocument } from "@repo/ui/lib/create-html-document";
-import { createSlateEditor, serializeHtml, Value } from "platejs";
+import { Value } from "platejs";
 
 const siteUrl = "https://platejs.org";
 

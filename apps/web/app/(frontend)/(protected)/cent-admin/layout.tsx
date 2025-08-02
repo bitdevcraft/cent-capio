@@ -1,8 +1,8 @@
 import { auth } from "@repo/cent-auth";
 import { headers as nextHeaders } from "next/headers";
-import { OrganizationProvider } from "@/components/organization-provider";
+import { OrganizationProvider } from "@/components/provider/organization-provider";
 
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/admin-layout/app-sidebar";
 import { Separator } from "@repo/ui/components/shadcn/separator";
 import {
   SidebarInset,

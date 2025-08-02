@@ -2,7 +2,7 @@ import { auth } from "@repo/cent-auth";
 import { headers as nextHeaders } from "next/headers";
 import { redirect } from "next/navigation";
 import { CreateOrganizationForm } from "./cent-admin/organization/create/create-organization-form";
-import { OrganizationProvider } from "@/components/organization-provider";
+import { OrganizationProvider } from "@/components/provider/organization-provider";
 
 export default async function Layout({
   children,

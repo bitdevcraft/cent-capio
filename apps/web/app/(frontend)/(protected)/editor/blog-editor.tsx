@@ -1,7 +1,7 @@
 // BlogEditor.tsx
 "use client";
 
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { Toaster } from "@repo/ui/components/shadcn/sonner";
 import { Plate, usePlateEditor } from "platejs/react";
 import { EditorKit } from "@repo/ui/components/platejs/plugins/editor-kit";

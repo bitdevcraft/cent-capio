@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "@repo/ui/globals.css";
-import { Providers } from "@/components/providers";
+import { Providers } from "@/components/provider/providers";
 import { Toaster } from "@repo/ui/components/shadcn/sonner";
 import { NextIntlClientProvider } from "next-intl";
 import { cn } from "@repo/ui/lib/utils";

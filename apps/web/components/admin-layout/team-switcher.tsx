@@ -19,8 +19,7 @@ import {
   useSidebar,
 } from "@repo/ui/components/shadcn/sidebar";
 import { Organization } from "better-auth/plugins/organization";
-import { authClient } from "@/lib/auth/auth-client";
-import { useOrganization } from "./organization-provider";
+import { useOrganization } from "../provider/organization-provider";
 
 export function TeamSwitcher({ teams }: { teams: Organization[] }) {
   const { isMobile } = useSidebar();

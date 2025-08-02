@@ -3,10 +3,9 @@
 import * as React from "react";
 import { Frame, Map, Newspaper, PieChart } from "lucide-react";
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { NavMain } from "@/components/admin-layout/nav-main";
+import { NavUser } from "@/components/admin-layout/nav-user";
+import { TeamSwitcher } from "@/components/admin-layout/team-switcher";
 import {
   Sidebar,
   SidebarContent,
