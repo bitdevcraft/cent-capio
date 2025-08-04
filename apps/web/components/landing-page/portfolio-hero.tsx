@@ -1,18 +1,27 @@
-import "@repo/ui/styles/portfolio.css";
+import { Button } from "@repo/ui/components/shadcn/button";
+import { MoveUpRight } from "lucide-react";
+import { H1 } from "../typography/typography";
 
 export function PortfolioHero() {
   return (
-    <section className="max-w-7xl mx-auto">
-      <div>
-        <h1 className="uppercase">Vincent Capio</h1>
-        <p>
-          Whether it&apos;s automating workflows, enhancing system security, or
-          developing full-stack applications, I thrive on solving complex
-          problems with smart, innovative solutions.
-        </p>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
+    <section className="max-w-7xl mx-auto min-h-screen relative">
+      <div className="absolute bottom-4 space-y-4">
+        <H1 className="uppercase max-w-[32ch]">
+          <span>Vincent</span> <span>Capio</span>
+        </H1>
+        <div className="space-y-4 max-w-[32ch]">
+          <p className="font-light text-muted-foreground">
+            Whether it&apos;s automating workflows, enhancing system security,
+            or developing full-stack applications, I thrive on solving complex
+            problems with smart, innovative solutions.
+          </p>
+          <div>
+            <Button className="rounded-full">
+              <p className="uppercase text-base">Contact</p>
+              <MoveUpRight strokeWidth={3} />
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );
