@@ -1,3 +1,5 @@
+import { env } from "@/env";
+
 type Environment = "development" | "production" | "staging" | "test";
 
 interface EnvironmentConfig {
@@ -40,6 +42,6 @@ const configurations: Record<Environment, EnvironmentConfig> = {
 };
 
 export function getConfig(): EnvironmentConfig {
-  const env = (process.env.NODE_ENV ?? "development") as Environment;
-  return configurations[env];
+  const nodeEnv = env.NODE_ENV as Environment;
+  return configurations[nodeEnv];
 }

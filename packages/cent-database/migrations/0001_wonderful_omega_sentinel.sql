@@ -1,0 +1,4 @@
+ALTER POLICY "tasks_select_organization" ON "tasks" TO app_user USING ("tasks"."organization_id" = current_setting('app.current_organization')::uuid);--> statement-breakpoint
+ALTER POLICY "tasks_insert_organization" ON "tasks" TO app_user WITH CHECK ("tasks"."organization_id" = current_setting('app.current_organization')::uuid);--> statement-breakpoint
+ALTER POLICY "tasks_update_organization" ON "tasks" TO app_user USING ("tasks"."organization_id" = current_setting('app.current_organization')::uuid) WITH CHECK ("tasks"."organization_id" = current_setting('app.current_organization')::uuid);--> statement-breakpoint
+ALTER POLICY "tasks_delete_organization" ON "tasks" TO app_user USING ("tasks"."organization_id" = current_setting('app.current_organization')::uuid);

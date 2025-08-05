@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@repo/cent-database": "workspace:*",
+    "@t3-oss/env-core": "^0.13.8",
     "better-auth": "^1.2.12",
     "dotenv": "^16.5.0",
     "pg": "^8.16.2",

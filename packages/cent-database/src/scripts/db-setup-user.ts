@@ -1,53 +1,60 @@
-import prompts from "prompts";
 import { Client } from "pg";
+import prompts from "prompts";
 
 async function main() {
   const response = await prompts([
     {
-      type: "text",
-      name: "host",
-      message: "Postgres host:",
       initial: "localhost",
+      message: "Postgres host:",
+      name: "host",
+      type: "text",
     },
     {
-      type: "number",
-      name: "port",
-      message: "Postgres port:",
       initial: 5432,
+      message: "Postgres port:",
+      name: "port",
+      type: "number",
     },
     {
-      type: "text",
-      name: "adminUser",
-      message: "Admin (superuser) DB username:",
       initial: "postgres",
-    },
-    {
-      type: "password",
-      name: "adminPassword",
-      message: "Admin DB password:",
-    },
-    {
+      message: "Admin (superuser) DB username:",
+      name: "adminUser",
       type: "text",
-      name: "dbName",
-      message: "Database name to grant access on:",
     },
     {
+      message: "Admin DB password:",
+      name: "adminPassword",
       type: "password",
-      name: "userPassword",
+    },
+    {
+      message: "Database name to grant access on:",
+      name: "dbName",
+      type: "text",
+    },
+    {
       message: "Password for new user `app_user`:",
+      name: "userPassword",
+      type: "password",
     },
   ]);
 
-  const { host, port, adminUser, adminPassword, dbName, userPassword } =
-    response;
+  const { adminPassword, adminUser, dbName, host, port, userPassword } =
+    response as {
+      adminPassword: string;
+      adminUser: string;
+      dbName: string;
+      host: string;
+      port: number;
+      userPassword: string;
+    };
 
   // connect as superuser
   const client = new Client({
+    database: "postgres", // connect to a default DB to run CREATE USER
     host,
+    password: adminPassword,
     port,
     user: adminUser,
-    password: adminPassword,
-    database: "postgres", // connect to a default DB to run CREATE USER
   });
 
   await client.connect();
