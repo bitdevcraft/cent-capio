@@ -6,9 +6,7 @@ export function PortfolioHero() {
   return (
     <section className="max-w-7xl mx-auto min-h-screen relative">
       <div className="absolute bottom-4 space-y-4">
-        <H1 className="uppercase max-w-[32ch]">
-          <span>Vincent</span> <span>Capio</span>
-        </H1>
+        <H1 className="uppercase max-w-[32ch]">Vincent Capio</H1>
         <div className="space-y-4 max-w-[32ch]">
           <p className="font-light text-muted-foreground">
             Whether it&apos;s automating workflows, enhancing system security,

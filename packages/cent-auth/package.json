@@ -11,18 +11,18 @@
   "dependencies": {
     "@repo/cent-database": "workspace:*",
     "@t3-oss/env-core": "^0.13.8",
-    "better-auth": "^1.2.12",
-    "dotenv": "^16.5.0",
-    "pg": "^8.16.2",
-    "resend": "^4.7.0",
+    "better-auth": "^1.3.4",
+    "dotenv": "^17.2.1",
+    "pg": "^8.16.3",
+    "resend": "^6.0.1",
     "uuid": "^11.1.0",
-    "zod": "^3.24.2"
+    "zod": "^4.0.16"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.0.4",
-    "dotenv-cli": "^8.0.0",
+    "@types/node": "^24.2.1",
+    "dotenv-cli": "^10.0.0",
     "tsup": "^8.5.0"
   },
   "exports": {

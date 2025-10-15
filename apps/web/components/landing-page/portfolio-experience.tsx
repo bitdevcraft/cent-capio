@@ -1,5 +1,6 @@
-import { H1, H2, H3, H4 } from "../typography/typography";
+import { H4 } from "../typography/typography";
 import { Timeline } from "@repo/ui/components/aceternity/timeline";
+import { H2AnimateOnScroll } from "./animations/h2-animate-on-scroll";
 
 const experiences = [
   {
@@ -94,7 +95,7 @@ export function PortfolioExperience() {
   return (
     <section className="max-w-7xl mx-auto min-h-screen relative">
       <div className="space-y-8">
-        <H1>Experience</H1>
+        <H2AnimateOnScroll>Experience</H2AnimateOnScroll>
         <p>
           Drawing on extensive engineering experience to build refined,
           functional web applications
